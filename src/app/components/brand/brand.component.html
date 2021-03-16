@@ -1,7 +1,19 @@
-<ul class="list-group">
+<!-- <ul class="list-group">
     <li class="list-group-item">An item</li>
     <li class="list-group-item">A second item</li>
     <li class="list-group-item">A third item</li>
     <li class="list-group-item">A fourth item</li>
     <li class="list-group-item">And a fifth one</li>
-  </ul>
+  </ul> -->
+<table>
+  <thead>
+    <tr>
+      <th>Brand Id</th>
+      <th>Brand Name</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let brand of brands">
+    <td>{{brand.brandId}}</td>
+    <td>{{brand.brandName}}</td>
+  </tr>
+</table>
