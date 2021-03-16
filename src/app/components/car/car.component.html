@@ -1,5 +1,15 @@
-<table class="table">
-    <tr *ngFor="">
-        <td></td>
+<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table  *ngIf="dataLoaded==true" class="table">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car Name</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let car in cars">
+        <td>{{car.carId}}</td>
+        <td>{{car.Name}}</td>
     </tr>
 </table>
