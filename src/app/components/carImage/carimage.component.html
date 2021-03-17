@@ -1,5 +1,21 @@
-<ul class="list-group">
+<!-- <ul class="list-group">
     <li class="list-group-item"></li>
     <li class="list-group-item"></li>
     
-  </ul>
+  </ul> -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>CarImage Id</th>
+        <th>Car Id</th>
+        <th>CarImage Date</th>
+        
+      </tr>
+    </thead>
+    <tr *ngFor="let carImage of carImages">
+      <td>{{carImage.carImageId}}</td>
+      <td>{{carImage.carId}}</td>
+      <td>{{carImage.carImageDate}}</td>
+    </tr>
+  </table>

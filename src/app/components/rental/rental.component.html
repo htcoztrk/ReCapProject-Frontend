@@ -1,7 +1,18 @@
-<ul class="list-group">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
-  </ul>
+<table>
+  <thead>
+    <tr>
+      <th>Color Id</th>
+      <th>Color Name</th>
+      <th>Color Name</th>
+      <th>Color Name</th>
+      <th>Color Name</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let rental of rentals">
+    <td>{{rental.rentalId}}</td>
+    <td>{{rental.carId}}</td>
+    <td>{{rental.customerlId}}</td>
+    <td>{{rental.rentDate}}</td>
+    <td>{{rental.returnDate}}</td>
+  </tr>
+</table>
