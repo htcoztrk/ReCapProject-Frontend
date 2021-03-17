@@ -1,0 +1,30 @@
+<div style="color:black;text-align:center;background-color:mediumorchid;font-size:20px;border-radius: 7px;">LIST OF RENTAL</div>
+<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table  *ngIf="dataLoaded==true" class="table">
+    <thead>
+        <tr>
+            
+            <th>Rental Id</th>
+             <th>User Id</th>
+            <th>Full Name</th>
+            <th>Car Name</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+             
+
+
+        </tr>
+    </thead>
+    <tr *ngFor="let rental of rentalDetail">
+        <td>{{rental.rentalId}}</td>
+        <td>{{rental.userId}}</td>
+        <td>{{rental.firstName +" "+rental.lastName}}</td>
+        <td>{{rental.carName}}</td>
+        <td>{{rental.rentDate}}</td>
+        <td>{{rental.returnDate}}</td> 
+        
+        
+    </tr>
+</table>
