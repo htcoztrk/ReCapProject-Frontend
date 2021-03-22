@@ -4,11 +4,15 @@
   </div>
 
  <ul class="list-group"  *ngIf="dataLoaded==true">
+    <li [class]="getAllBrandsClass()" 
+    (click)="currentResetter(nullBrand)"
+    routerLink="/cars/brand"
+    >All Brands</li>
 
-    <li class="list-group-item" 
+    <li [class]="getCurrentBrandClass(brand)" 
      *ngFor="let brand of brands"
      (click)="setCurrentBrand(brand)"
-     routeLink="/cars/brand/{{brand.brandId}}">
+     routerLink="/cars/brand/{{brand.brandId}}">
      {{brand.brandName}}</li>
     
   </ul> 

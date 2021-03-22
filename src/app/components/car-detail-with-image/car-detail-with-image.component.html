@@ -1,0 +1,30 @@
+<!-- <div >
+    <img src="{{carDetail.imagePath}}" alt="Girl in a jacket" width="500" height="600">
+
+</div -->
+
+
+
+  <div   *ngFor="let car of carDetail" >
+   
+
+
+     <img [src]="imageBaseUrl+car.imagePath" width=300 height=300>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Car Id</th>
+            
+                <th>Descriptions</th>
+               
+    
+            </tr>
+        </thead>
+        <tr>
+            <td>{{car.carId}}</td>
+            <td>{{car.carName}}</td>
+           
+        </tr>
+    </table>
+  </div>
+

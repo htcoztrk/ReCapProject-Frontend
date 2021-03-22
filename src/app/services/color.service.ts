@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Color } from '../models/color';
-import { ColorResponseModel } from '../models/colorResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable({

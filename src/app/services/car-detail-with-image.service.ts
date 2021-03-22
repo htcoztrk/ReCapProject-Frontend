@@ -7,10 +7,11 @@ import { ListResponseModel } from '../models/listResponseModel';
 @Injectable({
   providedIn: 'root'
 })
-export class CarDetailService {
-  apiUrl="https://localhost:44368/api/cars/getcardetails";
+export class CarDetailWithImageService {
+  apiUrl="https://localhost:44368/api/cars/getcardetailbycarid?carId=";
   constructor(private httpClient:HttpClient) { }
-  getCarDetails():Observable<ListResponseModel<CarDetail>>{
-    return this.httpClient.get<ListResponseModel<CarDetail>>(this.apiUrl)
+  getCarDetailByCarId(carId:number):Observable<ListResponseModel<CarDetail>>{
+    let newPath=this.apiUrl+carId
+    return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
   }
 }
