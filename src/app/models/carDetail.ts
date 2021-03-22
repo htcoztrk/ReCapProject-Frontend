@@ -7,4 +7,8 @@ export interface CarDetail{
     descriptions:string;
     modelYear:number;
     imagePath:string;
+    colorId:number;
+    brandId:number;
+
+
 }

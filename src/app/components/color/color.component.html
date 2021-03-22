@@ -1,12 +1,13 @@
-<div style="color:black;text-align:center;background-color:forestgreen;font-size:20px;border-radius: 7px;">LIST OF COLORS</div>
-<div *ngIf="dataLoaded==false"class="spinner-border text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+<div style="color:black;text-align:center;background-color:gray;font-size:20px;border-radius: 7px;">LIST OF COLORS</div>
+  <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
 
 <ul class="list-group"  *ngIf="dataLoaded==true">
   <li [class]="getAllColorsClass()" 
   (click)="currentResetter(nullColor)"
   routerLink="/cars/color"
+  
   >All Colors</li>
 
   <li [class]="getCurrentColorClass(color)" 

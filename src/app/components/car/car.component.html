@@ -1,5 +1,5 @@
-<div style="color:black;text-align:center;background-color:mediumorchid;font-size:20px;border-radius: 7px;">LIST OF CARS</div>
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+<div style="color:black;text-align:center;background-color:gray;font-size:20px;border-radius: 7px;">LIST OF BRANDS</div>
+  <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 <table  *ngIf="dataLoaded==true" class="table">
@@ -17,7 +17,8 @@
 
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
+    <tr *ngFor="let car of cars"
+    routerLink="/cars/details/{{car.carId}}">
         <td>{{car.carId}}</td>
         <td>{{car.carName}}</td>
         <td>{{car.brandId}}</td>
