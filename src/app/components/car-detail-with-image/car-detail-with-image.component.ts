@@ -20,8 +20,8 @@ export class CarDetailWithImageComponent implements OnInit {
   carImages:CarImage[]=[];
   dataLoaded=false;
   message:string
-  carii:number
-  currentImage:CarImage
+  currentImage:CarImage;
+  //currentImage:CarImage
   ngOnInit(): void {
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
@@ -34,7 +34,7 @@ export class CarDetailWithImageComponent implements OnInit {
        this.carDetails=response.data;
        this.message=response.message
        this.dataLoaded=true;
-       this.carii=carId
+       
      })
   }
   getCarImageByCarId(carId:number){
@@ -45,7 +45,6 @@ export class CarDetailWithImageComponent implements OnInit {
       this.currentImage=this.carImages[0];
     })
  }
-
  getSliderClassName(carImage:CarImage){
   if(this.currentImage ==carImage){
     return "carousel-item active"
@@ -54,4 +53,5 @@ export class CarDetailWithImageComponent implements OnInit {
   }
 
 }
+
 }
