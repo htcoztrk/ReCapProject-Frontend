@@ -2,6 +2,9 @@
   <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+
+ 
+  
 <table  *ngIf="dataLoaded==true" class="table">
     <thead>
         <tr>
@@ -11,20 +14,24 @@
             <th>Color Name</th>
             <th>Daily Price</th>
             <th>Model Year</th>
-            <th>Descriptions</th>
+            <th></th>
+
 
 
         </tr>
     </thead>
-    <tr *ngFor="let car of carDetail"
-    routerLink="/cars/details/{{car.carId}}">
-        <th>{{car.carId}}</th>
-        <td>{{car.carName}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <th>{{car.modelYear}}</th>
-        <th>{{car.descriptions}}</th>
-        
-    </tr>
+    <tbody>
+      <tr *ngFor="let car of carDetail"
+      routerLink="/cars/details/{{car.carId}}">
+          <th>{{car.carId}}</th>
+          <td>{{car.carName}}</td>
+          <td>{{car.brandName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.dailyPrice}}</td>
+          <th>{{car.modelYear}}</th>
+          <th><button (click)="addToCart(car)" class="btn btn-success">Add to Cart</button>></th>
+          
+      </tr>
+    </tbody>
+   
 </table>

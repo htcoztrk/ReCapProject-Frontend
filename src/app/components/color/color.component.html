@@ -3,6 +3,15 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 
+
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Search color</label>
+    <input type="text" [(ngModel)]="filterText"class="form-control" id="filterText" placeholder="search color">
+  </div>
+  <div *ngIf="filterText"class="alert alert-success">
+    {{filterText}} have been searched.
+  </div>
+
 <ul class="list-group"  *ngIf="dataLoaded==true">
   <li [class]="getAllColorsClass()" 
   (click)="currentResetter(nullColor)"
@@ -11,7 +20,7 @@
   >All Colors</li>
 
   <li [class]="getCurrentColorClass(color)" 
-   *ngFor="let color of colors"
+   *ngFor="let color of colors|filterColorPipe:filterText"
    (click)="setCurrentColor(color)"
    routerLink="/cars/color/{{color.colorId}}">
    {{color.colorName}}</li>
