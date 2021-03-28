@@ -40,7 +40,7 @@
         </div>
       </div>
     
-
+      <!-- *ngFor="let carDetail of carDetails" -->
   <div class="col-md-4" *ngFor="let carDetail of carDetails">
     <div class="card">
         <div class="card-body">
@@ -59,9 +59,16 @@
           </li>
         </ul>
   
-        <div class="card-body">
-          <button type="button" class="btn btn-primary">Kirala</button>
+        <div *ngIf="!rentFlag" class="card-body" style="margin: auto;">
+          <button  routerLink="/rent/car/{{ carDetail.carId }}" type="button" class="btn btn-primary">Rent A Car</button>
+        </div>  
+
+        <div *ngIf="rentFlag" class="d-grid gap-2 mb-2">
+            <div class="alert alert-danger">Car have rented</div>
         </div>
+        
+
+
       </div>
   </div>
 </div>

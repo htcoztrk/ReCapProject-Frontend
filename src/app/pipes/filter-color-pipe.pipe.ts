@@ -10,7 +10,7 @@ export class FilterColorPipePipe implements PipeTransform {
     filterText=filterText?filterText.toLocaleLowerCase():""
     return filterText? 
     value.filter((c:Color)=>c.colorName.toLocaleLowerCase() 
-    .indexOf(filterText)==-1)
+    .indexOf(filterText)!==-1)
     :value;
   }
 

@@ -1,0 +1,43 @@
+
+<div class="row">
+    <div class="col-md-4">
+      <select class="form-select" [(ngModel)]="brandIdFilter">
+          <option *ngFor="let brand of brands"
+          [value]="brand.brandId"
+          [selected]="getSelectedBrand(brand.brandId)">
+          {{brand.brandName}}      
+          </option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" [(ngModel)]="colorIdFilter">
+          <option *ngFor="let color of colors"
+          [value]="color.colorId"
+          [selected]="getSelectedColor(color.colorId)">
+          {{color.colorName}}      
+          </option>
+      </select>
+    </div>
+    <div class="col-md-2">
+       <div class="btn-group">
+         <button
+             routerLink="/cars/filter/{{brandIdFilter}}/{{colorIdFilter}}"
+             type="button"
+             class="btn btn-success">
+             Filter
+         </button>
+       </div>
+    </div>
+    <div class="col-md-2">
+      <div class="btn-group">
+         <button 
+         routerLink="/cars"
+         type="button"
+         class="btn btn-warning">
+         Clean
+         </button>
+      </div>
+    </div>
+  </div>
+  
+  

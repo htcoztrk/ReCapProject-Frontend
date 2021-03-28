@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/carDetail';
 import { CarImage } from 'src/app/models/carImage';
 import { CarDetailWithImageService } from 'src/app/services/car-detail-with-image.service';
@@ -15,7 +16,8 @@ export class CarDetailWithImageComponent implements OnInit {
 
   constructor(private carDetailWithImageService:CarDetailWithImageService,
     private carImageService:CarImageService,
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private toastrService:ToastrService) { }
   carDetails:CarDetail[]=[];
   carImages:CarImage[]=[];
   dataLoaded=false;
@@ -54,4 +56,8 @@ export class CarDetailWithImageComponent implements OnInit {
 
 }
 
+
+rentACar(car:CarDetail){
+   this.toastrService.success(car.carName,"sepete eklendi")
+}
 }

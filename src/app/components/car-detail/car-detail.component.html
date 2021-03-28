@@ -2,8 +2,8 @@
   <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-
  
+<app-car-filter></app-car-filter>
   
 <table  *ngIf="dataLoaded==true" class="table">
     <thead>
@@ -14,7 +14,7 @@
             <th>Color Name</th>
             <th>Daily Price</th>
             <th>Model Year</th>
-            <th></th>
+            
 
 
 
@@ -29,9 +29,13 @@
           <td>{{car.colorName}}</td>
           <td>{{car.dailyPrice}}</td>
           <th>{{car.modelYear}}</th>
-          <th><button (click)="addToCart(car)" class="btn btn-success">Add to Cart</button>></th>
+          
           
       </tr>
     </tbody>
    
 </table>
+
+
+
+
