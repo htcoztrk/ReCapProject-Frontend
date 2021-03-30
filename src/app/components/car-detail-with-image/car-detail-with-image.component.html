@@ -119,12 +119,15 @@
           >
           <div class="col-8">
             <input
-              [(ngModel)]="rent"
               type="date"
               class="form-control"
               id="rent-date"
               placeholder="Bir gün seçiniz."
+              [(ngModel)]="rent"
             />
+            <div *ngIf="rent"class="alert alert-success">
+              {{rent}} have been searched.
+            </div>
           </div>
         </div>
         <div class="form-group row">
@@ -134,20 +137,23 @@
           <div class="col-8">
             <input
             [(ngModel)]="return"
-              type="date"
-              class="form-control"
-              id="return-date"
-              placeholder="Bir gün seçiniz."
-            />
+            type="date"
+            class="form-control"
+            id="return-date"
+            placeholder="Bir gün seçiniz."
+          />
+          <div *ngIf="return"class="alert alert-success">
+            {{return}} have been searched.
+          </div>
           </div>
         </div>
 
-
+nghgnh
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         <button (click)="IsRentable(carDetail.carId)" 
-          [class]="setAnswer()"
+         <button (click)="addRental(carDetail.carId)" 
+          (click)="setAnswer()"
          type="button" class="btn btn-primary">Rent It.</button>
        </div>
      </div>

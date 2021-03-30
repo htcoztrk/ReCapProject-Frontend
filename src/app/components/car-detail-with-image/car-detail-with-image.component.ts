@@ -27,18 +27,19 @@ export class CarDetailWithImageComponent implements OnInit {
   carImages:CarImage[]=[];
   //rental:Rental[];
   dataLoaded=false;
-  message:string
+  rentMessage:string;
+  message:string;
   currentImage:CarImage;
-  rentable:boolean;
+  rentable:Boolean;
   rent:Date;
-  return:Date
+  return:Date;
   //currentImage:CarImage
 
   ngOnInit(): void {
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
         this.getCarImageByCarId(params["carId"])
-        this.IsRentable(params["carId"]);
+        this.addRental(params["carId"]);
       })
 
   }
@@ -66,17 +67,30 @@ export class CarDetailWithImageComponent implements OnInit {
   }
 
 }
-
-IsRentable(carId:number){
-     let myRental:Rental={
-        carId:carId,
-        rentDate:this.rent,
-       returnDate:this.return
-     }
-     this.rentalService.IsRentable(myRental).subscribe((response)=>{
-        this.rentable=response.success
-      })
-    }
+addRental(carId:number){
+  let myRental:Rental={
+    carId:carId,
+    customerId:1,
+    rentDate:this.rent,
+   returnDate:this.return
+ }
+ this.rentalService.addRental(myRental).subscribe((response)=>{
+   this.rentable=response.success;
+   this.rentMessage=response.message;
+   console.log(this.rent);
+   console.log(this.rent);
+ })
+}
+// IsRentable(carId:number){
+//      let myRental:Rental={
+//         carId:carId,
+//         rentDate:this.rent,
+//        returnDate:this.return
+//      }
+//      this.rentalService.IsRentable(myRental).subscribe((response)=>{
+//         this.rentable=response.success
+//       })
+//     }
 setAnswer()
 {
   if(!this.rentable){
