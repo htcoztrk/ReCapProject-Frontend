@@ -10,6 +10,8 @@
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
 
+    "allowSyntheticDefaultImports": true,
+
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
