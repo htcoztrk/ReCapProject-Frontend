@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/carDetail';
 import { CarImage } from 'src/app/models/carImage';
@@ -22,7 +22,8 @@ export class CarDetailWithImageComponent implements OnInit {
     private carImageService:CarImageService,
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
-    private rentalService:RentalService) { }
+    private rentalService:RentalService,
+    private router:Router) { }
   carDetails:CarDetail[]=[];
   carImages:CarImage[]=[];
   //rental:Rental[];
@@ -34,12 +35,13 @@ export class CarDetailWithImageComponent implements OnInit {
   rent:Date;
   return:Date;
   //currentImage:CarImage
+  myRental:Rental
 
   ngOnInit(): void {
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
         this.getCarImageByCarId(params["carId"])
-        this.addRental(params["carId"]);
+        this.IsRentable(params["carId"]);
       })
 
   }
@@ -67,7 +69,7 @@ export class CarDetailWithImageComponent implements OnInit {
   }
 
 }
-addRental(carId:number){
+/*addRental(carId:number){
   let myRental:Rental={
     carId:carId,
     customerId:1,
@@ -80,24 +82,28 @@ addRental(carId:number){
    console.log(this.rent);
    console.log(this.rent);
  })
-}
-// IsRentable(carId:number){
-//      let myRental:Rental={
-//         carId:carId,
-//         rentDate:this.rent,
-//        returnDate:this.return
-//      }
-//      this.rentalService.IsRentable(myRental).subscribe((response)=>{
-//         this.rentable=response.success
-//       })
-//     }
+}*/
+ IsRentable(carId:number){
+      this.myRental={
+         carId:carId,
+         customerId:1,
+         rentDate:this.rent,
+        returnDate:this.return
+     }
+      this.rentalService.IsRentable(this.myRental).subscribe((response)=>{
+         this.rentable=response.success;
+          this.rentMessage=response.message;
+       })
+     }
 setAnswer()
 {
   if(!this.rentable){
      return this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
   }
  else{
-   return this.toastrService.success("odeme sayfasına yonlendiriliyorsun");
+   this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
+   return this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
+    
  }
 }
 
