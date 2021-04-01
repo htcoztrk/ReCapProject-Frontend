@@ -14,7 +14,7 @@ export class FakeCardService {
     private httpClient:HttpClient,
   ) { }
 
-  apiUrl = 'https://localhost:44352/api/';
+  apiUrl = 'https://localhost:44368/api/';
 
   isCardExist(fakeCard:FakeCard):Observable<ResponseModel>{
     let newPath = this.apiUrl + "fakecards/iscardexist";
@@ -27,8 +27,8 @@ export class FakeCardService {
     return this.httpClient.get<ListResponseModel<FakeCard>>(newPath);
   }
 
-  updateCard(fakeCard:FakeCard){
+  updateCard(fakeCard:FakeCard):Observable<ResponseModel>{
     let newPath = this.apiUrl + "fakecards/update";
-    this.httpClient.put(newPath,fakeCard)
+    return this.httpClient.post<ResponseModel>(newPath,fakeCard)
   }
 }

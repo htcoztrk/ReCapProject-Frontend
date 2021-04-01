@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { asyncScheduler } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/carDetail';
 import { Customer } from 'src/app/models/customer';
@@ -95,15 +96,22 @@ export class PaymentComponent implements OnInit {
       cardNumber: this.cardNumber,
       expirationDate: this.expirationDate,
       cardCvv: this.cardCvv,
+      cardId:1
     };
     this.cardExist = await this.isCardExist(fakeCard);
     if (this.cardExist) {
       this.fakeCard = await this.getFakeCardByCardNumber(this.cardNumber);
+      console.log(this.fakeCard.moneyInTheCard ,"money in the card")
+      console.log(this.amountOfPayment,"amount of payment")
       if (this.fakeCard.moneyInTheCard >= this.amountOfPayment) {
-        this.fakeCard.moneyInTheCard =
-          this.fakeCard.moneyInTheCard - this.amountOfPayment;
-        this.updateCard(fakeCard);
-        this.rentalService.addRental(this.rental);
+        fakeCard.moneyInTheCard =
+        this.fakeCard.moneyInTheCard - this.amountOfPayment;
+         this.updateCard(fakeCard).subscribe();
+        
+        this.rentalService.addRental(this.rental).subscribe();
+          // this.rentalService.addRental(this.rental).subscribe((r)=>{
+          //   console.log(r.message,r.success)
+          // })
         this.toastrService.success('Arabayı kiraladınız', 'Işlem başarılı');
       } else {
         this.toastrService.error(
@@ -126,7 +134,7 @@ export class PaymentComponent implements OnInit {
       .data[0];
   }
 
-  updateCard(fakeCard: FakeCard) {
-    this.fakeCardService.updateCard(fakeCard);
+   updateCard(fakeCard: FakeCard) {
+    return (this.fakeCardService.updateCard(fakeCard))
   }
 }

@@ -101,17 +101,19 @@
           <label for="example-date-input" class="col-4 col-form-label"
             >Müşteri</label
           >
-          <!-- <div class="col-8">
+          <!-- [ngValue]="customer.customerId"
+          *ngFor="let customer of customers"           burdakıleri customer ekleyince optionun icine eklersin-->
+           <div class="col-8">
             <select class="form-select" [(ngModel)]="customerId">
               <option
-                [ngValue]="customer.customerId"
-                *ngFor="let customer of customers"
+                
               >
-                {{ customer.firstName }} {{ customer.lastName }} |
-                {{ customer.companyName }}
+                <!-- {{ customer.firstName }} {{ customer.lastName }} |
+                {{ customer.companyName }} -->
+                {{customerId}}
               </option>
             </select>
-          </div> -->
+          </div> 
         </div>
         <div class="form-group row mb-2">
           <label for="example-date-input" class="col-4 col-form-label"
@@ -150,10 +152,11 @@
 
 
        </div>
+       <!-- (click)="setAnswer()" -->
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
          <button (click)="IsRentable(carDetail.carId)" 
-          (click)="setAnswer()"
+         
          type="button" class="btn btn-primary"
          
          data-bs-dismiss="modal">Rent It.</button>

@@ -1,5 +1,5 @@
 export interface FakeCard {
-    id?: number;
+    cardId?: number;
     nameOnTheCard: string;
     cardNumber: string;
     cardCvv: string;

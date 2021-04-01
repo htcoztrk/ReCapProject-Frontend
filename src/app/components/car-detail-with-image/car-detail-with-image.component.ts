@@ -36,12 +36,12 @@ export class CarDetailWithImageComponent implements OnInit {
   return:Date;
   //currentImage:CarImage
   myRental:Rental
-
+customerId=1;
   ngOnInit(): void {
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
         this.getCarImageByCarId(params["carId"])
-        this.IsRentable(params["carId"]);
+        //this.IsRentable(params["carId"]);
       })
 
   }
@@ -83,53 +83,41 @@ export class CarDetailWithImageComponent implements OnInit {
    console.log(this.rent);
  })
 }*/
- IsRentable(carId:number){
+ async IsRentable(carId:number){
       this.myRental={
          carId:carId,
-         customerId:1,
+         customerId:this.customerId,
          rentDate:this.rent,
         returnDate:this.return
      }
-      this.rentalService.IsRentable(this.myRental).subscribe((response)=>{
-         this.rentable=response.success;
-          this.rentMessage=response.message;
+      this.rentalService.IsRentable(this.myRental).subscribe( (response)=>{
+          //this.rentable=response.success;
+         // this.rentMessage=response.message;
+          this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
+          this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
+       },(error)=>{
+        this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
        })
+       
      }
-setAnswer()
+
+
+/* setAnswer()
 {
-  if(!this.rentable){
-     return this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
+  if(this.rentable){
+    
+    this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
+      this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
+   
   }
  else{
-   this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
-   return this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
+  this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
     
  }
-}
+}*/
 
 
 
 
-//  isRent(carId: number) {
-//    this.rentalService.getRentalByCarId(carId).subscribe(
-//     (response) => {
-//        // this.rentFlag = response.data.returnDate == null ? true : false;
-//        let today = Date();
-//        var date1 = new Date(response.data.returnDate.toString());
-//        var date2 = new Date(today.toString());
-//        var difference = date2.getTime() - date1.getTime();
-          
-//        if (response.data.returnDate == null || difference < 0){
-//         this.rentFlag = true;
-//        }
-        
-//        else{this.rentFlag = false;} 
-//       }
-//     //,
-//     //   (response) => {
-//     //     this.rentFlag = false;
-//     //   }
-//    );
-//  }
   
 }
