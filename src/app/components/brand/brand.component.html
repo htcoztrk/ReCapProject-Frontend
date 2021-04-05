@@ -1,10 +1,14 @@
-<div style="color:black;text-align:center;background-color:gray;font-size:20px;border-radius: 7px;">LIST OF BRANDS</div>
-  <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
+<!-- <div style="color:black;text-align:center;background-color:gray;font-size:20px;border-radius: 7px;">LIST OF BRANDS</div> -->
+  
+
+<div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-
+ <div class="mb-3">
+  <button class="btn btn-primary"routerLink="/brands">Go To Brand List</button>
+ </div>
   <div class="mb-3">
-    <label for="filterText" class="form-label">Search brand</label>
+    <!-- <label for="filterText" class="form-label">Search brand</label> -->
     <input type="text" [(ngModel)]="filterText"class="form-control" id="filterText" placeholder="search brand">
   </div>
 

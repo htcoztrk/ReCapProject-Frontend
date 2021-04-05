@@ -29,7 +29,7 @@ export class ColorComponent implements OnInit {
    }
    getCurrentColorClass(color:Color){
       if(color==this.currentColor){
-        return "list-group-item active"
+        return "list-group-item list-group-item-primary"
       }
       else{
         return "list-group-item"
@@ -37,7 +37,7 @@ export class ColorComponent implements OnInit {
    }
    getAllColorsClass(){
      if(!this.currentColor){
-        return "list-group-item active"
+        return "list-group-item list-group-item-primary"
      }
      else{
        return "list-group-item "

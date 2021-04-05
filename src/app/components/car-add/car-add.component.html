@@ -1,0 +1,73 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5>Add Car</h5></div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm">
+                    <div class="mb-3">
+                        <label for="carName">Car Name</label>
+                        <div class="form-group">
+                            <input type="text" id="carName"
+                            formControlName="carName"
+                            class="form-control"
+                            placeholder="car name"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="carName">brandId</label>
+                        <div class="form-group">
+                            <select formControlName="brandId"  [(ngModel)]="brandId" class="form-select">
+                                <option *ngFor="let brand of brands" [ngValue]="brand.brandId"  class="option">
+                                  {{ brand.brandName }}
+                                </option>
+                            </select>
+                        </div>
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorId">Color Id</label>
+                        <div class="form-group">
+                            <select formControlName="colorId"  [(ngModel)]="colorId" class="form-select">
+                                <option *ngFor="let color of colors" [ngValue]="color.colorId"  class="option">
+                                  {{ color.colorName }}
+                                </option>
+                            </select>
+                        </div>
+                        
+                    </div>             
+                    <div class="mb-3">
+                        <label for="carName">Model Year</label>
+                        <div class="form-group">
+                            <input type="number" id="modelYear"
+                            formControlName="modelYear"
+                            class="form-control"
+                            placeholder="model year"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="carName">Daily Price</label>
+                        <div class="form-group">
+                            <input type="number" id="dailyPrice"
+                            formControlName="dailyPrice"
+                            class="form-control"
+                            placeholder="daily price"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="carName">Description</label>
+                        <div class="form-group">
+                            <input type="text" id="descriptions"
+                            formControlName="descriptions"
+                            class="form-control"
+                            placeholder="descriptions"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" 
+                (click)="add()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

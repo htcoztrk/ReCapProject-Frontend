@@ -8,13 +8,19 @@
 <table  *ngIf="dataLoaded==true" class="table">
     <thead>
         <tr>
+            <th></th>
             <th>Car Id</th>
             <th>Car Name</th>
             <th>Brand Name</th>
             <th>Color Name</th>
             <th>Daily Price</th>
             <th>Model Year</th>
-            
+             
+            <th style="text-align: center; width: 127px ">
+              <button type="button" data-func="dt-add" class="btn btn-success btn-xs dt-add formButton" routerLink="/cars/add" >
+                <span class="glyphicon glyphicon-plus" >Add Car</span>
+              </button>
+            </th>
 
 
 
@@ -22,14 +28,24 @@
     </thead>
     <tbody>
       <tr *ngFor="let car of carDetail"
-      routerLink="/cars/details/{{car.carId}}">
+      >
+          
+          <td><button class="btn btn-success " routerLink="/cars/details/{{car.carId}}">Detail</button></td>
           <th>{{car.carId}}</th>
           <td>{{car.carName}}</td>
           <td>{{car.brandName}}</td>
           <td>{{car.colorName}}</td>
           <td>{{car.dailyPrice}}</td>
-          <th>{{car.modelYear}}</th>
-          
+          <td>{{car.modelYear}}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-xs formButton" data-bs-toggle="modal" data-bs-target="#updateCarModal" (click)="setSelectedCarToUpdate(car)" style="margin-right: 16px">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button type="button" class="btn btn-danger btn-xs formButton" data-bs-toggle="modal" data-bs-target="#deleteCarModal" (click)="setSelectedCarToDelete(car)">
+              <i class="bi bi-trash"></i>
+            </button>
+
+          </td>
           
       </tr>
     </tbody>
@@ -37,5 +53,159 @@
 </table>
 
 
+
+  <!--updateBrandModal-->
+  <div class="modal fade" id="updateCarModal" tabindex="-1" aria-labelledby="updateCarModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateCarTitle">Update Car</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="carUpdateForm" *ngIf="carUpdateForm">
+            <div class="row">
+              <div class="col-4">
+                <label for="cardId">Id</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="carId" name="carId" formControlName="carId" value="{{selectedCar.carId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="carName">Car Name</label>      
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" *ngIf="selectedCar" id="carName" name="carName" formControlName="carName" value="{{selectedCar.carName}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="brandId">Brand</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="colorId">Color</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="dailyPrice">Daily Price</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="dailyPrice" name="dailyPrice" formControlName="dailyPrice" value="{{selectedCar.dailyPrice}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="modelYear">Model Year</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="modelYear" name="modelYear" formControlName="modelYear" value="{{selectedCar.modelYear}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="descriptions">Description</label>      
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" *ngIf="selectedCar" id="descriptions" name="descriptions" formControlName="descriptions" value="{{selectedCar.descriptions}}" >                
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+          <button class="btn btn-primary" (click)="updateCar()" data-bs-dismiss="modal" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end updateCarModal-->
+
+  <!--deleteCarModal-->
+  <div class="modal fade" id="deleteCarModal" tabindex="-1" aria-labelledby="deleteCarModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteCarTitle">Delete Car</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="carDeleteForm" *ngIf="carDeleteForm">
+            <div class="row">
+              <div class="col-4">
+                <label for="cardId">Id</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="carId" name="carId" formControlName="carId" value="{{selectedCar.carId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="carName">Car Name</label>      
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" *ngIf="selectedCar" id="carName" name="carName" formControlName="carName" value="{{selectedCar.carName}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="brandId">Brand</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="colorId">Color</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="dailyPrice">Daily Price</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="dailyPrice" name="dailyPrice" formControlName="dailyPrice" value="{{selectedCar.dailyPrice}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="modelYear">Model Year</label>      
+              </div>
+              <div class="col-8">
+                <input type="number" class="form-control" *ngIf="selectedCar" id="modelYear" name="modelYear" formControlName="modelYear" value="{{selectedCar.modelYear}}" >                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <label for="descriptions">Description</label>      
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" *ngIf="selectedCar" id="descriptions" name="descriptions" formControlName="descriptions" value="{{selectedCar.descriptions}}" >                
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-danger" (click)="deleteCar()" data-bs-dismiss="modal" >Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end deleteCarModal-->
 
 

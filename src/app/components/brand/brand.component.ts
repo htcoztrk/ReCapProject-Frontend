@@ -30,7 +30,7 @@ setCurrentBrand(brand:Brand){
 }
 getCurrentBrandClass(brand:Brand){
    if(brand==this.currentBrand){
-     return "list-group-item active"
+     return "list-group-item  list-group-item-primary "
    }
    else{
      return "list-group-item"
@@ -38,7 +38,7 @@ getCurrentBrandClass(brand:Brand){
 }
 getAllBrandsClass(){
   if(!this.currentBrand){
-     return "list-group-item active"
+     return "list-group-item  list-group-item-primary"
   }
   else{
     return "list-group-item"
