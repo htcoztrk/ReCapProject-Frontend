@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/carDetail';
+import { Color } from 'src/app/models/color';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-car-detail',
@@ -20,12 +24,17 @@ export class CarDetailComponent implements OnInit {
    carDeleteForm:FormGroup;
    selectedCar:Car;
    
+   brands:Brand[];
+   colors:Color[];
+   
   constructor(private carDetailService:CarDetailService,
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
     private formBuilder:FormBuilder,
     private router:Router,
-    private carSerice:CarService) { }
+    private carSerice:CarService,
+    private brandService:BrandService,
+    private colorService:ColorService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -45,6 +54,8 @@ export class CarDetailComponent implements OnInit {
       
     })
     //this.getCarDetails();
+    this.getBrands();
+    this.getColors();
   }
    getCarDetails(){
          this.carDetailService.getCarDetails().subscribe(response=>{
@@ -52,7 +63,16 @@ export class CarDetailComponent implements OnInit {
            this.dataLoaded=true;
          })
    }
-
+  getBrands(){
+    this.brandService.getBrands().subscribe((response)=>{
+      this.brands=response.data
+    })
+  }
+  getColors(){
+    this.colorService.getColors().subscribe((response)=>{
+      this.colors=response.data
+    })
+  }
    getCarDetailByBrandId(brandId:number){
     this.carDetailService.getCarDetailsByBrandId(brandId)
     .subscribe(response=>{

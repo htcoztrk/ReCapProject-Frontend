@@ -85,7 +85,13 @@
                 <label for="brandId">Brand</label>      
               </div>
               <div class="col-8">
-                <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >                
+                <!-- [(ngModel)]="brandId" -->
+                <!-- <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >                 -->
+                <select formControlName="brandId"   class="form-select">
+                  <option *ngFor="let brand of brands" [ngValue]="brand.brandId"  class="option" selected="{{selectedCar.brandId}}">
+                    {{ brand.brandName }}
+                  </option>
+              </select>
               </div>
             </div>
             <div class="row">
@@ -93,7 +99,12 @@
                 <label for="colorId">Color</label>      
               </div>
               <div class="col-8">
-                <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                
+                <!-- <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                 -->
+                <select formControlName="colorId"   class="form-select">
+                  <option *ngFor="let color of colors" [ngValue]="color.colorId"  class="option" selected="{{selectedCar.colorId}}">
+                    {{ color.colorName }}
+                  </option>
+              </select>
               </div>
             </div>
             <div class="row">
@@ -162,7 +173,7 @@
                 <label for="brandId">Brand</label>      
               </div>
               <div class="col-8">
-                <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >                
+                  <input type="number" class="form-control" *ngIf="selectedCar" id="brandId" name="brandId" formControlName="brandId" value="{{selectedCar.brandId}}" >             
               </div>
             </div>
             <div class="row">
@@ -170,7 +181,7 @@
                 <label for="colorId">Color</label>      
               </div>
               <div class="col-8">
-                <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                
+                 <input type="number" class="form-control" *ngIf="selectedCar" id="colorId" name="colorId" formControlName="colorId" value="{{selectedCar.colorId}}" >                  
               </div>
             </div>
             <div class="row">
