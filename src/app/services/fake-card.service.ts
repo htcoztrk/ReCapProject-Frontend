@@ -31,4 +31,8 @@ export class FakeCardService {
     let newPath = this.apiUrl + "fakecards/update";
     return this.httpClient.post<ResponseModel>(newPath,fakeCard)
   }
+  addCard(fakeCard:FakeCard):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "fakecards/add";
+    return this.httpClient.post<ResponseModel>(newPath,fakeCard)
+  }
 }

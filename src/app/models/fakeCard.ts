@@ -5,4 +5,5 @@ export interface FakeCard {
     cardCvv: string;
     expirationDate: string;
     moneyInTheCard?: number;
+    customerId:number;
   }

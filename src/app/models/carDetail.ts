@@ -9,6 +9,7 @@ export interface CarDetail{
     imagePath:string;
     colorId:number;
     brandId:number;
+    findeksScore:number;
 
 
 }

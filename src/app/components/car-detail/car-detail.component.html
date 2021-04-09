@@ -2,7 +2,7 @@
   <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
- 
+ <hr>
 <app-car-filter></app-car-filter>
   
 <table  *ngIf="dataLoaded==true" class="table">
@@ -15,7 +15,7 @@
             <th>Color Name</th>
             <th>Daily Price</th>
             <th>Model Year</th>
-             
+            <th>Findeks</th>
             <th style="text-align: center; width: 127px ">
               <button type="button" data-func="dt-add" class="btn btn-success btn-xs dt-add formButton" routerLink="/cars/add" >
                 <span class="glyphicon glyphicon-plus" >Add Car</span>
@@ -37,6 +37,7 @@
           <td>{{car.colorName}}</td>
           <td>{{car.dailyPrice}}</td>
           <td>{{car.modelYear}}</td>
+          <td>{{car.findeksScore}}</td>
           <td>
             <button type="button" class="btn btn-primary btn-xs formButton" data-bs-toggle="modal" data-bs-target="#updateCarModal" (click)="setSelectedCarToUpdate(car)" style="margin-right: 16px">
               <i class="bi bi-pencil-square"></i>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { asyncScheduler } from 'rxjs';
@@ -25,24 +26,29 @@ export class PaymentComponent implements OnInit {
   customer: Customer;
   getCustomerId: number;
   amountOfPayment: number = 0;
-  nameOnTheCard: string;
-  cardNumber: string;
-  cardCvv: string;
-  expirationDate: string;
-  fakeCard: FakeCard;
+ // nameOnTheCard: string;
+  //cardNumber: string;
+  //cardCvv: string;
+  //expirationDate: string;
+  //fakeCard: FakeCard;
   cardExist: Boolean = false;
+  cardForm:FormGroup;
 
+  saveUsername:boolean;
+  selectedCard:FakeCard;
   constructor(
     private activateRoute: ActivatedRoute,
     private carService: CarDetailService,
     private customerService: CustomerService,
     private router: Router,
+    private fromBuilder:FormBuilder,
     private toastrService: ToastrService,
     private rentalService: RentalService,
     private fakeCardService: FakeCardService
   ) {}
 
   ngOnInit(): void {
+    this.createCardForm();
     this.activateRoute.params.subscribe((params) => {
       if (params['rental']) {
         this.rental = JSON.parse(params['rental']);
@@ -59,6 +65,10 @@ export class PaymentComponent implements OnInit {
       console.log(response);
     });
   }*/
+
+/*onSaveUsernameChanged(value:boolean){
+  this.saveUsername=value;
+}*/
 
   getCarDetail() {
     this.carService
@@ -89,30 +99,76 @@ export class PaymentComponent implements OnInit {
       }
     }
   }
+createCardForm(){
+ 
+  
+    this.cardForm=this.fromBuilder.group({
+      nameOnTheCard:["",Validators.required],
+      cardNumber:["",Validators.required],
+      expirationDate:["",Validators.required],
+      cardCvv:["",Validators.required],
+      cardId:2,
+      customerId:1
+    })
+
+  
+
+}
+/*cardAdd(){
+  if(this.cardForm.valid){
+   let cardModel=Object.assign("",this.cardForm.value)
+   this.fakeCardService.addCard(cardModel).subscribe((response)=>{
+     this.toastrService.success("Card added",response.message)
+   },(errorResponse)=>{
+     this.toastrService.error("card add operation failed")
+   })
+  }
+  else{
+    this.toastrService.warning("card form is not valid")
+  }
+}*/
+
+
 
   async rentACar() {
-    let fakeCard: FakeCard = {
-      nameOnTheCard: this.nameOnTheCard,
-      cardNumber: this.cardNumber,
-      expirationDate: this.expirationDate,
-      cardCvv: this.cardCvv,
-      cardId:1
-    };
-    this.cardExist = await this.isCardExist(fakeCard);
+    // let fakeCard: FakeCard = {
+    //   nameOnTheCard: this.nameOnTheCard,
+    //   cardNumber: this.cardNumber,
+    //   expirationDate: this.expirationDate,
+    //   cardCvv: this.cardCvv,
+    //   cardId:2,
+    //   customerId:1
+    // };
+    if(this.cardForm.valid){
+      let fakeCard=Object.assign({},this.cardForm.value)
+      this.cardExist = await this.isCardExist(fakeCard);
     if (this.cardExist) {
-      this.fakeCard = await this.getFakeCardByCardNumber(this.cardNumber);
-      console.log(this.fakeCard.moneyInTheCard ,"money in the card")
-      console.log(this.amountOfPayment,"amount of payment")
-      if (this.fakeCard.moneyInTheCard >= this.amountOfPayment) {
+      let card = await this.getFakeCardByCardNumber(fakeCard.cardNumber);
+     
+      if (card.moneyInTheCard >= this.amountOfPayment) {
         fakeCard.moneyInTheCard =
-        this.fakeCard.moneyInTheCard - this.amountOfPayment;
-         this.updateCard(fakeCard).subscribe();
+        card.moneyInTheCard - this.amountOfPayment; 
+        this.rentalService.addRental(this.rental).subscribe((response)=>{
+          this.updateCard(fakeCard).subscribe((response)=>{
+            if(response.success){
+              this.toastrService.info(" tl kartınızdan cekildi",this.amountOfPayment.toString())
+            }
+          });
+          this.toastrService.success('Arabayı kiraladınız', 'Işlem başarılı');
+        },
+        (responseError)=>{
+          this.toastrService.error(responseError.error.Message,"hata buymusss");
+          if(responseError.error.ValidationErrors.length>0){
+            for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
+              this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage,"hata buymusss");
+              
+            }
+          }
+         
+            
+          
+        });
         
-        this.rentalService.addRental(this.rental).subscribe();
-          // this.rentalService.addRental(this.rental).subscribe((r)=>{
-          //   console.log(r.message,r.success)
-          // })
-        this.toastrService.success('Arabayı kiraladınız', 'Işlem başarılı');
       } else {
         this.toastrService.error(
           'Kartınızda yeterli para bulunmamaktadır',
@@ -122,6 +178,9 @@ export class PaymentComponent implements OnInit {
     } else {
       this.toastrService.error('Bankanız bilgilerinizi onaylamadı', 'Hata');
     }
+
+
+  }
   }
 
   async isCardExist(fakeCard: FakeCard) {

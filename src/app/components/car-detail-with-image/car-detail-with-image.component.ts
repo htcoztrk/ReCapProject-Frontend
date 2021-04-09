@@ -41,6 +41,7 @@ customerId=1;
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
         this.getCarImageByCarId(params["carId"])
+        //this.checkFindeks(params["carId"]),
         //this.IsRentable(params["carId"]);
       })
 
@@ -69,20 +70,7 @@ customerId=1;
   }
 
 }
-/*addRental(carId:number){
-  let myRental:Rental={
-    carId:carId,
-    customerId:1,
-    rentDate:this.rent,
-   returnDate:this.return
- }
- this.rentalService.addRental(myRental).subscribe((response)=>{
-   this.rentable=response.success;
-   this.rentMessage=response.message;
-   console.log(this.rent);
-   console.log(this.rent);
- })
-}*/
+
  async IsRentable(carId:number){
       this.myRental={
          carId:carId,
@@ -91,30 +79,20 @@ customerId=1;
         returnDate:this.return
      }
       this.rentalService.IsRentable(this.myRental).subscribe( (response)=>{
-          //this.rentable=response.success;
-         // this.rentMessage=response.message;
+         this.rentalService.checkFindeksScore(this.myRental).subscribe((findeksResponse)=>{
           this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
           this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
+         },(findeksError)=>{
+            this.toastrService.error("findeks puanınız araba kiralamak için yeterli değil.")
+         })
+          
        },(error)=>{
         this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
        })
        
      }
-
-
-/* setAnswer()
-{
-  if(this.rentable){
-    
-    this.toastrService.info("Ödeme sayfasına yönlendiriliyorsunuz...","Ödeme İşlemleri");
-      this.router.navigate(['/payment/',JSON.stringify(this.myRental)]);
    
-  }
- else{
-  this.toastrService.error("seçtiğiniz tarih aralığında araç kirada.");
-    
- }
-}*/
+
 
 
 

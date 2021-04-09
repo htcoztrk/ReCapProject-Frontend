@@ -50,7 +50,8 @@ createCarAddForm(){
      dailyPrice:["",Validators.required],
      modelYear:["",Validators.required],
      descriptions:["",Validators.required],
-     carName:["",Validators.required]
+     carName:["",Validators.required],
+     findeksScore:["",Validators.required]
    });
 }
 add(){

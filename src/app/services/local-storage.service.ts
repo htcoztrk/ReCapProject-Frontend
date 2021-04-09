@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Customer } from '../models/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ localStorage:Storage;
 get(key:string){
   return this.localStorage.getItem(key);
 }
-add(key:string,value:string){
+set(key:string,value:string){
   return this.localStorage.setItem(key,value)
 }
 remove(key:string){
@@ -20,6 +21,13 @@ remove(key:string){
 clean(){
   this.localStorage.clear();
 }
+setCurrentCustomer(customer:Customer){
+  localStorage.setItem("customer",JSON.stringify(customer))
+}
+getCurrentCustomer():Customer{
+   return JSON.parse(localStorage.getItem("customer"))
+}
+
 checkExistsOrNot(value:string):boolean{
   if(localStorage.getItem(value)!==null&&localStorage.getItem(value)!==undefined){
     return true;

@@ -30,4 +30,8 @@ export class RentalService {
     let newPath=this.apiUrl+"rentals/IsRentable";
     return this.httpClient.post<ResponseModel>(newPath,rental);
   }
+  checkFindeksScore(rental:Rental):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"rentals/checkfindeksscore";
+    return this.httpClient.post<ResponseModel>(newPath,rental)
+  }
 }
