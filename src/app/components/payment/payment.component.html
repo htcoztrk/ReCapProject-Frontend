@@ -95,12 +95,42 @@
         </div>
       </form>
       </div>
-      <div class="checkbox ">
-        <label>
-          <input type="checkbox" value="remember-me"> Save my Credit Card
+      <div class="form-check">
+        <input #saveUserNameCheckBox class="form-check-input" type="checkbox"  id="saveUserNameCheckBox" 
+        [checked]="saveUsername" 
+        (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)"
+        >
+        <label class="form-check-label" for="flexCheckChecked">
+          Kart Bilgilerimi Kaydet
         </label>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+         <table class="table" >
+           <tbody>
+             <thead>Kayıtlı Kartlarım</thead>
+             <tr>
+               <th>Kart Id</th>
+               <th>Kart Numarası</th>
+               <th>Kart Üzerindeki Ad</th>
+               <th>Kart CVV</th>
+               <th></th>
+  
+              </tr>
+             <tr *ngFor="let card of cards"  >
+               <td>{{card.cardId}}</td>
+               <td>{{card.cardNumber}}</td>
+               <td>{{card.nameOnTheCard}}</td>
+               <td>{{card.cardCvv}}</td>
+               <td (click)="setCurrentCard(card.cardNumber)"><button class="btn btn-info">Seç</button></td>
+              </tr>
+           </tbody>
+         </table>
+      </div>
+    </div>
+
     <div class="card-footer">
       <div class="row">
         <button (click)="rentACar()" class="btn btn-success">

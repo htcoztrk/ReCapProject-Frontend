@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/carDetail';
 import { CarImage } from 'src/app/models/carImage';
+import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
 import { RentalDetail } from 'src/app/models/rentalDetail';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { CarDetailWithImageService } from 'src/app/services/car-detail-with-image.service';
 import { CarImageService } from 'src/app/services/car-image.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
@@ -23,7 +25,8 @@ export class CarDetailWithImageComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
     private rentalService:RentalService,
-    private router:Router) { }
+    private router:Router,
+    private localStoragrService:LocalStorageService) { }
   carDetails:CarDetail[]=[];
   carImages:CarImage[]=[];
   //rental:Rental[];
@@ -35,8 +38,9 @@ export class CarDetailWithImageComponent implements OnInit {
   rent:Date;
   return:Date;
   //currentImage:CarImage
-  myRental:Rental
-customerId=1;
+  myRental:Rental;
+  currentCustomer:Customer;
+  customerId:number
   ngOnInit(): void {
         this.activatedRoute.params.subscribe(params=>{
         this.getCarDetailByCarId(params["carId"]),
@@ -44,7 +48,7 @@ customerId=1;
         //this.checkFindeks(params["carId"]),
         //this.IsRentable(params["carId"]);
       })
-
+       this.getCurrentCustomer();
   }
   getCarDetailByCarId(carId:number){
      this.carDetailWithImageService.getCarDetailByCarId(carId).subscribe(response=>{
@@ -70,11 +74,15 @@ customerId=1;
   }
 
 }
-
+getCurrentCustomer(){
+  this.currentCustomer= this.localStoragrService.getCurrentCustomer()
+  this.customerId=this.currentCustomer.customerId
+  console.log(this.customerId,"car detail with deki customerrrr");
+}
  async IsRentable(carId:number){
       this.myRental={
          carId:carId,
-         customerId:this.customerId,
+         customerId:this.currentCustomer.customerId,
          rentDate:this.rent,
         returnDate:this.return
      }
