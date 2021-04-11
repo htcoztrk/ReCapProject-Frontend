@@ -19,11 +19,44 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 
-## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+Register Page: 
+![alt text](src/assets/images/Capture.PNG "Logo Title Text 1")
+
+Login Page: 
+![alt text](src/assets/images/Capture2.PNG "Logo Title Text 1")
+
+Cars: 
+![alt text](src/assets/images/accesstoken.PNG "Logo Title Text 1")
+Filter: 
+![alt text](src/assets/images/filter.PNG "Logo Title Text 1")
+Car Detail: 
+![alt text](src/assets/images/cardetail.PNG "Logo Title Text 1")
+
+Car Add: 
+![alt text](src/assets/images/addcar.PNG "Logo Title Text 1")
+Rent Car: 
+![alt text](src/assets/images/rent1.PNG "Logo Title Text 1")
+![alt text](src/assets/images/rent2.PNG "Logo Title Text 1")
+![alt text](src/assets/images/rent5.PNG "Logo Title Text 1")
+![alt text](src/assets/images/rent3.PNG "Logo Title Text 1")
+![alt text](src/assets/images/rent6.PNG "Logo Title Text 1")
+![alt text](src/assets/images/rent4.PNG "Logo Title Text 1")
+Brand: 
+![alt text](src/assets/images/brands.PNG "Logo Title Text 1")
+![alt text](src/assets/images/BRANDADD2.PNG "Logo Title Text 1")
+![alt text](src/assets/images/branddelete.PNG "Logo Title Text1")
+Color: 
+![alt text](src/assets/images/COLORLİST.PNG "Logo Title Text 1")
+![alt text](src/assets/images/color1.PNG "Logo Title Text 1")
+Profile:
+![alt text](src/assets/images/profile.PNG "Logo Title Text 1")
+![alt text](src/assets/images/myrental.PNG "Logo Title Text 1")
+
 
 
 ## Further help
+
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
