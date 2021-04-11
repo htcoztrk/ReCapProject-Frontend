@@ -1,6 +1,8 @@
 # ReCapProFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+Bu proje, online Araba kiralamak amacıyla oluşturduğum [(Rent A Car)](https://github.com/htcoztrk/ReCapProject-Frontend) projesinin Frontend kısmıdır.
+Proje [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4. kullanılarak yapılmıştır.
+
 
 ## Development server
 
