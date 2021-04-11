@@ -5,16 +5,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Table of Contents
 <ul>
-  <li href="#register">Register</li>
+  <li ><a href="#register">Register</a></li>
   <li href=""><a href="#login">Login</a> </li>
-  <li href="#carlist">Car List</li>
-  <li href="#carfilter">Filter Car</li>
-  <li href="#cardetail">Car Detail</li>
-  <li href="#rentacar">Rent A Car</li>
-  <li href="#payment">Payment</li>
-  <li href="#brand">Brands </li>
-  <li href="#color">Colors </li>
-  <li href="#profile">Profile</li>
+  <li ><a href="#carlist">Car List</a></li>
+  <li ><a href="#carfilter">Filter Car</a></li>
+  <li ><a href="#cardetail">Car Detail</a></li>
+  <li ><a href="#rentacar">Rent A Car</a></li>
+  <li ><a href="#payment">Payment</a></li>
+  <li ><a href="#brand">Brands</a> </li>
+  <li ><a href="#color">Colors</a> </li>
+  <li ><a href="#profile">Profile</a></li>
  </ul>
 
 
@@ -23,6 +23,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Usage
 <p id="register"></p>
 
+Register:
 Kullanıcı sisteme kayıtlı değil ise, kayıt olarak Login sayfasına yönlendirilir:
 ![alt text](src/assets/images/Capture.PNG "Logo Title Text 1")
 
