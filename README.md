@@ -5,58 +5,86 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Table of Contents
 <ul>
-  <li>Login </li>
-  <li>Register</li>
-  <li>Car List</li>
-  <li>Car Detail</li>
-  <li>Rent A Car</li>
-  <li>Filter Car</li>
-  <li>Color List</li>
-  <li>Brand List</li>
-  <li>Payment</li>
-  <li></li>
+  <li href="#register">Register</li>
+  <li href=""><a href="#login">Login</a> </li>
+  <li href="#carlist">Car List</li>
+  <li href="#carfilter">Filter Car</li>
+  <li href="#cardetail">Car Detail</li>
+  <li href="#rentacar">Rent A Car</li>
+  <li href="#payment">Payment</li>
+  <li href="#brand">Brands </li>
+  <li href="#color">Colors </li>
+  <li href="#profile">Profile</li>
  </ul>
 
 
 
 
 ## Usage
-Register Page: 
+<p id="register"></p>
+
+Kullanıcı sisteme kayıtlı değil ise, kayıt olarak Login sayfasına yönlendirilir:
 ![alt text](src/assets/images/Capture.PNG "Logo Title Text 1")
 
+<p id="login"></p>
+
 Login Page: 
+Kullanıcı bilgilerini girdikten sonra token oluşturulur ve sisteme giriş yapar.
 ![alt text](src/assets/images/Capture2.PNG "Logo Title Text 1")
 
-Cars: 
+<p id="carlist"></p> 
+
+Cars: Anasayfada araba listesi bulunmaktadır. 
 ![alt text](src/assets/images/accesstoken.PNG "Logo Title Text 1")
-Filter: 
+
+<p id="filter"></p>
+
+Filter: Kullanıcı renk ve marka seçerek arabaları filtreleyebilir.
 ![alt text](src/assets/images/filter.PNG "Logo Title Text 1")
-Car Detail: 
+
+<p id="cardetail"></p>
+
+Car Detail: Kullanıcı araba detayına tıklayarak arabaya ait detay sayfasını görüntüleyebilir.
 ![alt text](src/assets/images/cardetail.PNG "Logo Title Text 1")
 
-Car Add: 
+
+Car Add: Araba ekleme için sisteme giriş yapan kullanıcı araba ekleme yetkisine sahip ise araba ekleyebilir. 
 ![alt text](src/assets/images/addcar.PNG "Logo Title Text 1")
-Rent Car: 
+
+<p id="rentacar"></p>
+
+Rent Car: Kullanıcı, detaylarını görüntülediği arabayı,findeks puanı yeterli olduğu durumda tarihleri belirleyerek arabayı kiralayabilir. Aynı zamanda seçtiği tarih aralığında arabanın kirada olmaması kontrol edilir. Araba kiralanabilir durumdaysa, kullanıcı ödeme sayfasına yönlendirilir. 
 ![alt text](src/assets/images/rent1.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/rent2.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/rent5.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/rent3.PNG "Logo Title Text 1")
+
+<p id="payment"></p>
+
+Payment:
+Ödeme sayfasında işlem özeti bulunur ve ödeme tamamlanması için kart bilgileri girilir. Kullanıcıya Kart bilgileri kaydetme seçeneği sunularak bir sonraki ödemelerde kayıtlı kartları görüntülenir.
 ![alt text](src/assets/images/rent6.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/rent4.PNG "Logo Title Text 1")
-Brand: 
+
+<p id="brand"></p>
+
+Brand: Markalar listelenebilir, marka ekleme, silme ve güncelleme işlemleri yapılabilir.
 ![alt text](src/assets/images/brands.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/BRANDADD2.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/branddelete.PNG "Logo Title Text1")
-Color: 
+
+<p id="color"></p>
+
+Color: Renkler listelenebilir, renk ekleme, silme ve güncelleme işlemleri yapılabilir.
 ![alt text](src/assets/images/COLORLİST.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/color1.PNG "Logo Title Text 1")
-Profile:
+
+<p id="profile"></p>
+
+Profile:Kullanıcı profiline girerek bilgilerini güncelleyebilir. Aynı zamanda MyRental kısmından kiraladığı araç bilgilerini görüntüleyebilir.
 ![alt text](src/assets/images/profile.PNG "Logo Title Text 1")
 ![alt text](src/assets/images/myrental.PNG "Logo Title Text 1")
 
 
 
-## Further help
 
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
