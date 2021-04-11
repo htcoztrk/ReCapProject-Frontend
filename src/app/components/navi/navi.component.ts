@@ -18,13 +18,14 @@ currentCustomer:Customer;
   ngOnInit(): void {
     this.localStoragrService.get("token")
     this.getCurrentCustomer();
+    console.log(this.getCurrentCustomer())
   }
   isAuth():boolean{
     return this.authService.isAuthendicated();
   }
-  getCurrentCustomer(){
-    this.currentCustomer=this.localStoragrService.getCurrentCustomer();
-    return this.currentCustomer;
+  getCurrentCustomer():Customer{
+    return this.localStoragrService.getCurrentCustomer();
+     
   }
   logout(){
     this.localStoragrService.remove("token")

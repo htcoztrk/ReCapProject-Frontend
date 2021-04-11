@@ -1,4 +1,4 @@
-<div style="color:black;text-align:center;background-color:mediumorchid;font-size:20px;border-radius: 7px;">LIST OF RENTALS</div>
+<div style="color:black;text-align:center;background-color:grey;font-size:20px;border-radius: 7px;">LIST OF RENTALS</div>
 <div *ngIf="dataLoaded==false"class="spinner-border text-warning" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
@@ -6,18 +6,21 @@
 <table  *ngIf="dataLoaded==true" class="table">
   <thead>
     <tr>
-      <!-- <th>Rental Id</th> -->
       <th>Car Id</th>
-      <!-- <th>Customer Id</th> -->
+      <th>Car Name</th> 
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Rent Date</th>
       <th>Return Date</th>
     </tr>
   </thead>
   <tr *ngFor="let rental of rentals">
-    <!-- <td>{{rental.rentalId}}</td> -->
     <td>{{rental.carId}}</td>
-    <!-- <td>{{rental.customerId}}</td> -->
+    <td>{{rental.carName}}</td> 
+    <td>{{rental.firstName}}</td>
+    <td>{{rental.lastName}}</td>
     <td>{{rental.rentDate}}</td>
     <td>{{rental.returnDate}}</td>
+   
   </tr>
 </table>

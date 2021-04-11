@@ -31,6 +31,8 @@ import { ColorListComponent } from './components/color-list/color-list.component
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BrandListComponent,
     ColorListComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileUpdateComponent,
+    FooterComponent
     
    
   ],

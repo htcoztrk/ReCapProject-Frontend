@@ -15,31 +15,47 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link active" aria-current="page" href="/cars">Cars</a>
           </li>
-         
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link active" aria-current="page" href="/brands">Brands</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/colors">Colors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/about">About Us</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li> -->
+         
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button> -->
        
           <div *ngIf="isAuth()" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-               {{currentCustomer.firstName}} {{getCurrentCustomer().lastName}} 
+              {{getCurrentCustomer().firstName}}  {{getCurrentCustomer().lastName}} 
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">My Rentals</a></li>
+              <li><a class="dropdown-item " href="/profile/{{getCurrentCustomer().userId}}">My Profile</a></li>
+              <li><a class="dropdown-item " href="/rentals/{{getCurrentCustomer().customerId}}">My Rentals</a></li>
               <li><hr class="dropdown-divider"></li>
               
             </ul>
           </div>
-          <div *ngIf="!isAuth()">
-            <button class="btn btn-primary" routerLink="/login">Login</button>
-            <button class="btn btn-primary" routerLink="/register">Register</button>
+          <div class="row">
+            <div *ngIf="!isAuth()" class="col-md-6">
+              <button class="btn btn-primary" routerLink="/login">Login</button>  
+            </div>
+            <div *ngIf="!isAuth()" class="col-md-6">
+              <button class="btn btn-primary ;" routerLink="/register">Register</button>
+            </div>
           </div>
           <div *ngIf="isAuth()">
             <button (click)="logout()"class="btn btn-primary">Logout</button>
